@@ -1,0 +1,26 @@
+runtime: php73 # Replace with php74 to use PHP 7.4
+
+runtime_config:
+  document_root:
+
+handlers:
+  # Serve a directory as a static resource.
+  - url: /stylesheets
+    static_dir: stylesheets
+
+  # Serve images as static resources.
+  - url: /(.+\.(gif|png|jpg|PNG|svg|css|js|map))$
+    static_files: \1
+    upload: .+\.(gif|png|jpg|PNG|svg|css|js|map)$
+
+  # Serve your app through a front controller at index.php or public/index.php.
+  - url: .*
+    script: auto
+
+  entrypoint: 
+    serve handler.php
+  env_variables:
+    CLOUDSQL_USER: root
+    CLOUDSLQ_DB: projetsession001
+    CLOUDSQL_PASSWORD: ccvqqN1D9vpGEdNi
+    CLOUDSQL_DSN: /cloudsql/projetsession-designinteractif:northamerica-northeast1:projetsession001
